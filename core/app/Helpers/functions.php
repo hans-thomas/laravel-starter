@@ -1,10 +1,10 @@
 <?php
 
-    use App\Helpers\CacheEnum;
-    use App\Models\Preference;
+    use App\Helpers\Enums\CacheEnum;
+    use App\Models\Core\Preference;
 
     if ( ! function_exists( 'user' ) ) {
-        function user(): \App\Models\User|bool {
+        function user(): \App\Models\Core\User|bool {
             return Auth::check() ? Auth::user() : false;
         }
     }
@@ -17,7 +17,7 @@
                         $value = Preference::firstWhere( 'key', $key )->value );
 
                     return $value;
-                } catch ( \Throwable $e ) {
+                } catch ( Throwable $e ) {
 
                     return null;
                 }
@@ -31,7 +31,7 @@
                         $value = Preference::firstWhere( 'key', $key )->value );
 
                     return $value;
-                } catch ( \Throwable $e ) {
+                } catch ( Throwable $e ) {
                     return null;
                 }
             }
@@ -43,7 +43,7 @@
             try {
                 $value = Preference::updateOrCreate( [ 'key' => $key ], [ 'value' => $value ] )->value;
                 Cache::forever( CacheEnum::PREFIX->value . $key, $value );
-            } catch ( \Throwable $e ) {
+            } catch ( Throwable $e ) {
                 return false;
             }
 
@@ -57,7 +57,7 @@
                 foreach ( $preferences as $key => $value ) {
                     set_preference( $key, $value );
                 }
-            } catch ( \Throwable $e ) {
+            } catch ( Throwable $e ) {
                 return false;
             }
 

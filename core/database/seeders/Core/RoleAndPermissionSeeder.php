@@ -1,20 +1,21 @@
 <?php
 
-    namespace Database\Seeders;
+    namespace Database\Seeders\Core;
 
-    use App\Models\User;
+    use App\Models\Core\User;
     use AreasEnum;
     use Hans\Horus\Models\Role;
     use Horus;
     use Illuminate\Database\Seeder;
     use RolesEnum;
+    use Throwable;
 
     class RoleAndPermissionSeeder extends Seeder {
         /**
          * Run the database seeds.
          *
          * @return void
-         * @throws \Throwable
+         * @throws Throwable
          */
         public function run() {
             Horus::createPermissions( [

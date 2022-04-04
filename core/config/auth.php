@@ -68,11 +68,11 @@
         'providers' => [
             'users' => [
                 'driver' => 'eloquent',
-                'model'  => App\Models\User::class,
+                'model'  => App\Models\Core\User::class,
             ],
             'SphinxProvider' => [
                 'driver' => 'eloquent',
-                'model'  => App\Models\User::class,
+                'model'  => App\Models\Core\User::class,
             ],
 
             // 'users' => [

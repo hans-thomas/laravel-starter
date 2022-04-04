@@ -4,7 +4,7 @@
     namespace Tests\Factories;
 
 
-    use App\Models\User;
+    use App\Models\Core\User;
     use AreasEnum;
     use Exception;
     use Hans\Horus\Models\Role;

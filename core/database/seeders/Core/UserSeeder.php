@@ -1,8 +1,8 @@
 <?php
 
-    namespace Database\Seeders;
+    namespace Database\Seeders\Core;
 
-    use App\Models\User;
+    use App\Models\Core\User;
     use Illuminate\Database\Seeder;
     use RolesEnum;
 

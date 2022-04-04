@@ -3,7 +3,7 @@
     namespace App\Http\Controllers\Auth;
 
     use App\Http\Controllers\Controller;
-    use App\Models\User;
+    use App\Models\Core\User;
     use App\Providers\RouteServiceProvider;
     use Hans\Horus\Exceptions\HorusException;
     use Hans\Horus\Models\Role;

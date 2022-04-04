@@ -7,8 +7,11 @@
     use Hans\Pollux\Exceptions\PolluxException;
     use Hans\Sphinx\Exceptions\SphinxException;
     use Illuminate\Auth\Access\AuthorizationException;
+    use Illuminate\Database\QueryException;
     use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
     use Illuminate\Http\JsonResponse;
+    use Illuminate\Validation\ValidationException;
+    use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
     use Throwable;
 
     class Handler extends ExceptionHandler {
@@ -43,16 +46,24 @@
         }
 
         public function render( $request, Throwable $e ) {
+            if ( env( 'RAW_ERROR', false ) ) {
+                return parent::render( $request, $e );
+            }
+
             return match ( true ) {
+                $e instanceof ValidationException => parent::render( $request, $e ),
                 $e instanceof AuthorizationException => self::throw( $e, 9998 ),
+                $e instanceof NotFoundHttpException => self::throw( $e, 9997, 'Route not found!' ),
+                $e instanceof QueryException => self::throw( $e, 9996, $e->getPrevious()->getMessage(), 500 ),
                 $e instanceof SphinxException, $e instanceof PolluxException, $e instanceof HorusException, $e instanceof AliciaException => self::throw( $e ),
-                default => parent::render( $request, $e )
+                default => self::throw( $e, responseCode: 500 )
             };
         }
 
-        private static function throw( Throwable $e, int $defaultErrorCode = 9999 ): JsonResponse {
+        private static function throw( Throwable $e, int $defaultErrorCode = 9999, string $message = null, int $responseCode = null ): JsonResponse {
             $errorCode = method_exists( $e, $method = 'getErrorCode' ) ? $e->{$method}() : $defaultErrorCode;
 
-            return BaseException::make( $e->getMessage(), $errorCode, $e->getCode() )->render();
+            return BaseException::make( $message ? : $e->getMessage(), $errorCode, $responseCode ? : $e->getCode() )
+                                ->render();
         }
     }

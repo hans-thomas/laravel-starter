@@ -1,12 +1,13 @@
 <?php
 
-    namespace App\Policies;
+    namespace App\Policies\Core;
 
-    use App\Models\User;
+    use App\Models\Core\User;
+    use App\Policies\Traits\PolicyHelper;
     use Illuminate\Auth\Access\HandlesAuthorization;
 
     class UserPolicy {
-        use HandlesAuthorization, PolicyShortHandTrait;
+        use HandlesAuthorization, PolicyHelper;
 
         /**
          * Determine whether the user can view any models.

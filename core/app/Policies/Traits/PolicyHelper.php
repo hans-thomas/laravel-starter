@@ -1,18 +1,18 @@
 <?php
 
 
-    namespace App\Policies;
+    namespace App\Policies\Traits;
 
 
     use Illuminate\Support\Arr;
 
-    trait PolicyShortHandTrait {
+    trait PolicyHelper {
+        private function makeAbility(): string {
+            return $this->getModel() . '-' . debug_backtrace()[ 1 ][ 'function' ];
+        }
+
         private function getModel(): string {
             return strtolower( substr( $string = Arr::last( explode( '\\', self::class ) ), 0,
                 strpos( $string, 'Policy' ) ) );
-        }
-
-        private function makeAbility(): string {
-            return $this->getModel() . '-' . debug_backtrace()[ 1 ][ 'function' ];
         }
     }

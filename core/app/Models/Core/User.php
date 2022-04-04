@@ -1,6 +1,6 @@
 <?php
 
-    namespace App\Models;
+    namespace App\Models\Core;
 
     use App\Mail\ResetPasswordEmail;
     use Hans\Alicia\Traits\AliciaRelationHandler;

@@ -1,0 +1,50 @@
+// CRUD
+
+    public static function failedToCreate() {
+        return self::make( "Failed to create the model!", BaseErrorCode::INVALID_OPERATION,
+            Response::HTTP_INTERNAL_SERVER_ERROR );
+    }
+
+    public static function failedToUpdate() {
+        return self::make( "Failed to update the model!", BaseErrorCode::INVALID_OPERATION,
+            Response::HTTP_INTERNAL_SERVER_ERROR );
+    }
+
+    public static function failedToDelete() {
+        return self::make( "Failed to delete the model!", BaseErrorCode::INVALID_OPERATION,
+            Response::HTTP_INTERNAL_SERVER_ERROR );
+    }
+
+// belongsTo
+
+    public static function doestHave(): BaseException {
+        return self::make( "The model doesn't have any !",
+            BaseErrorCode::LOCATION_DOENST_HAVE_PARENT, Response::HTTP_INTERNAL_SERVER_ERROR );
+    }
+
+    public static function failedToUpdate(): BaseException {
+        return self::make( "Failed to update model's !",
+            BaseErrorCode::LOCATION_DOENST_HAVE_PARENT, Response::HTTP_INTERNAL_SERVER_ERROR );
+    }
+
+// belongsToMany
+
+    public static function doestHave(): BaseException {
+        return self::make( "The model doesn't have any !",
+            BaseErrorCode::LOCATION_DOENST_HAVE_PARENT, Response::HTTP_INTERNAL_SERVER_ERROR );
+    }
+
+    public static function failedToUpdate(): BaseException {
+        return self::make( "Failed to update model's !",
+            BaseErrorCode::LOCATION_DOENST_HAVE_PARENT, Response::HTTP_INTERNAL_SERVER_ERROR );
+    }
+
+    public static function failedToAttach(): BaseException {
+        return self::make( "Failed to attach model's !",
+            BaseErrorCode::LOCATION_DOENST_HAVE_PARENT, Response::HTTP_INTERNAL_SERVER_ERROR );
+    }
+
+    public static function failedToDetach(): BaseException {
+        return self::make( "Failed to detach model's !",
+            BaseErrorCode::LOCATION_DOENST_HAVE_PARENT, Response::HTTP_INTERNAL_SERVER_ERROR );
+    }

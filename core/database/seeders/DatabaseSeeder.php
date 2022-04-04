@@ -2,6 +2,9 @@
 
     namespace Database\Seeders;
 
+    use Database\Seeders\Core\PreferenceSeeder;
+    use Database\Seeders\Core\RoleAndPermissionSeeder;
+    use Database\Seeders\Core\UserSeeder;
     use Illuminate\Database\Console\Seeds\WithoutModelEvents;
     use Illuminate\Database\Seeder;
 

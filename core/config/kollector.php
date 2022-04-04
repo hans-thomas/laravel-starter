@@ -11,7 +11,7 @@
         |
         */
         'apis'       => [
-            'default'           => KollectorEnum::PAYIR,
+            'default'            => KollectorEnum::PAYIR,
             KollectorEnum::PAYIR => [
                 'mode'       => 'sandbox',
                 'sandbox'    => [
@@ -55,7 +55,7 @@
         | if their status still be pending.
         |
         */
-        'expiration' => env('PAYMENTS_EXPIRATION','+40 minute'),
+        'expiration' => env( 'PAYMENTS_EXPIRATION', '+40 minute' ),
         /*
         |--------------------------------------------------------------------------
         | Pending Payments Job
@@ -66,5 +66,14 @@
         | you can switch on/off this job.
         |
         */
-        'scheduler'        => env( 'PAYMENTS_SCHEDULER', true )
+        'scheduler'  => env( 'PAYMENTS_SCHEDULER', true ),
+        /*
+        |--------------------------------------------------------------------------
+        | User Model
+        |--------------------------------------------------------------------------
+        |
+        | get the user model class
+        |
+        */
+        'model'      => \App\Models\Core\User::class
     ];

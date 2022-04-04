@@ -1,0 +1,39 @@
+// one to many relations
+
+    public function view( Model $model ): Model|Collection|null {
+        Gate::authorize( $this->policy(), $model );
+
+        return $model;
+    }
+
+    public function update( Model $model, Model $related ): bool {
+        Gate::authorize( $this->policy(), [ $model, $related ] );
+
+        return $model;
+    }
+
+// many to many relations
+
+    public function view( Model $model ): Builder {
+        Gate::authorize( $this->policy(), $model );
+
+        return $model->relation();
+    }
+
+    public function update( Model $model, Collection $related ): array {
+        Gate::authorize( $this->policy(), [ $model, $related ] );
+
+        return $model->relation()->syncWithPivotValues( $related->pluck( 'id' ), [ 'key' => 'value' ] );
+    }
+
+    public function attach( Model $model, Collection $related ): array {
+        Gate::authorize( $this->policy(), [ $model, $related ] );
+
+        return $model->relation()->syncWithPivotValues( $related->pluck( 'id' ), [ 'key' => 'value' ], false );
+    }
+
+    public function detach( Model $model, Collection $related ): int {
+        Gate::authorize( $this->policy(), [ $model, $related ] );
+
+        return $model->relation()->detach( $related->pluck( 'id' ) );
+    }

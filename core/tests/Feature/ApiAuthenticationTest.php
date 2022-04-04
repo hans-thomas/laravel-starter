@@ -2,7 +2,7 @@
 
     namespace Tests\Feature;
 
-    use App\Models\User;
+    use App\Models\Core\User;
     use Exception;
     use Tests\Factories\UserFactory;
     use Tests\TestCase;
@@ -183,7 +183,7 @@
          *
          * @return void
          */
-        public function refreshTokenTokenSend() {
+        public function refreshTokenSend() {
             $user  = UserFactory::createNormalUserWithSession();
             $token = UserFactory::createAccessToken( $user );
 

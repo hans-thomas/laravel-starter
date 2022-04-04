@@ -1,7 +1,9 @@
 <?php
 
-    namespace App\Exceptions;
+    namespace App\Exceptions\Core;
 
+    use App\Exceptions\BaseErrorCode;
+    use App\Exceptions\BaseException;
     use Symfony\Component\HttpFoundation\Response;
 
     class SampleException extends BaseException {

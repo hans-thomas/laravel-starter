@@ -1,0 +1,69 @@
+// belongsTo relations
+
+    public function view( Model $model ): Model {
+        if ( $related = $this->repository->view( $model ) ) {
+            return $related;
+        }
+
+        throw ModelException::doestHave();
+    }
+
+    public function update( Model $model, Model $related ): Model {
+        if ( $this->repository->update( $model, $related ) ) {
+            return $model;
+        }
+
+        throw ModelException::failedToUpdate();
+    }
+
+// hasMany relations
+
+    public function view( Model $model ): Paginator {
+        if ( ( $related = $this->repository->view( $model ) )->count() ) {
+            return $related->simplePaginate();
+        }
+
+        throw ModelException::doestHave();
+    }
+
+    public function update( Model $model, HasManyDto $related ): Paginator {
+        if ( $this->repository->update( $model, $related ) ) {
+            return $this->view( $model );
+        }
+
+        throw ModelException::failedToUpdate();
+    }
+
+// many to many relations
+
+    public function view( Model $model ): Paginator {
+        if ( ( $related = $this->repository->view( $model ) )->count() ) {
+            return $related->simplePaginate();
+        }
+
+        throw ModelException::doestHave();
+    }
+
+    public function update( Model $model, ManyToManyDto $dto ): Paginator {
+        if ( $this->repository->update( $model, $dto ) ) {
+            return $this->view( $model );
+        }
+
+        throw ModelException::failedToUpdate();
+    }
+
+    public function attach( Model $model, ManyToManyDto $dto ): Paginator {
+        if ( $this->repository->attach( $model, $dto ) ) {
+            return $this->view( $model );
+        }
+
+        throw ModelException::failedToAttach();
+    }
+
+    public function detach( Model $model, ManyToManyDto $dto ): Paginator {
+        if ( $this->repository->detach( $model, $dto ) ) {
+            return $this->view( $model );
+        }
+
+        throw ModelException::failedToDetach();
+    }

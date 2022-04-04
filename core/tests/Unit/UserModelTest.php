@@ -2,7 +2,7 @@
 
     namespace Tests\Unit;
 
-    use App\Models\User;
+    use App\Models\Core\User;
     use AreasEnum;
     use Hans\Horus\Exceptions\HorusException;
     use Hans\Horus\Models\Permission;
