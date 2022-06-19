@@ -15,8 +15,6 @@
         "guzzlehttp/guzzle": "^7.2",
         "hans-thomas/alicia": "^9.0",
         "hans-thomas/horus": "^9.0",
-        "hans-thomas/kollector": "^9.0",
-        "hans-thomas/pollux": "^9.0",
         "hans-thomas/sphinx": "^9.0",
         "josiasmontag/laravel-recaptchav3": "^1.0",
         "kutia-software-company/larafirebase": "dev-master",
