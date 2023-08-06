@@ -25,6 +25,9 @@ run `laravel new core` command in the root directory to install latest laravel r
 
 > Notice: make sure laravel framework will be installed in `core` directory.
 
+## Package starter
+If you're looking for a package starter, see [this](https://github.com/hans-thomas/package-starter).
+
 ## Contributing
 
 1. Fork it!
