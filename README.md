@@ -20,10 +20,10 @@
 
 ## Usage
 
-To use `laravel-starter`, Click on `Use this template` button or just clone the repository and then,
-run `laravel new core` command in the root directory to install latest laravel release.
+To use `laravel-starter`, Click on `Use this template` button or just clone the repository. then,
+run `composer create-project laravel/laravel core` command in the root directory to install the latest Laravel release.
 
-> Notice: make sure laravel framework will be installed in `core` directory.
+> Notice: make sure the Laravel framework will be installed in the `core` directory.
 
 ## Package starter
 If you're looking for a package starter, see [this](https://github.com/hans-thomas/package-starter).
